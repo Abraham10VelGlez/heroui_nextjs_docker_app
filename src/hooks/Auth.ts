@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { useFormik } from "formik";
+import { addToast } from "@heroui/react";
 //import Cookies from "js-cookie";
 //import { UsersContext } from "@/context/UsersContext"; // Ajusta la ruta según tu proyecto
 // Definir los tipos de los valores del formulario
@@ -63,15 +64,27 @@ export function Auth({ isLoaded }) {
                 // Simular un delay de 3 segundos antes de procesar la respuesta
                 await new Promise((resolve) =>
                     setTimeout(() => {
-                        resolve(true);
-                        setData(false);
-                        console.log(response.data)
-                        console.log(response.data.length);
-                        
+
+                        ////console.log(response.data)
+                        //console.log(response.data.length);
+
                         if (response.data.length == 0) {
                             console.log("ESTE USUARIO NO EXISTE EN SISTEMA");
+                            resolve(true);
+                            setData(false);
+                            addToast({
+                                title: "Este usuario no existe en el Servidor",
+                                color: "danger",
+                            });
+
                         } else {
+                            resolve(true);
+                            setData(false);
                             console.log("Guardar el usuario en el contexto");
+                            addToast({
+                                title: "Guardar el usuario en el contexto, iniciar sesion",
+                                color: "success",
+                            });
                             // Guardar el usuario en el contexto
                             //setUser(response.data.user);
                             //Cookies.set("authToken", response.data.token, { expires: 7 }); // Guardar token en cookies por 7 días

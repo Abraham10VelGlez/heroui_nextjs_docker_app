@@ -1,12 +1,10 @@
 "use client"
 import React from "react";
-import { Card, Skeleton, Button, Input, Avatar } from "@heroui/react";
+import { Card, Skeleton, Button, Input, Avatar, Spinner } from "@heroui/react";
 import { Auth } from "@/hooks/Auth";
 
 export default function Loginx({ isLoaded, toggleLoad }) {
     const { formik_validatelogon, loaddatax } = Auth({ isLoaded })
-    console.log(isLoaded);
-    
     return (
         <>
             <form className="flex flex-col gap-4" onSubmit={formik_validatelogon.handleSubmit}>
@@ -25,19 +23,17 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                                 <Input
                                     id="u"
                                     name="u"
-                                    
+
                                     label="Usuario"
                                     labelPlacement="outside"
                                     type="text"
                                     value={formik_validatelogon.values.u}
-                                    onChange={formik_validatelogon.handleChange}                                    
+                                    onChange={formik_validatelogon.handleChange}
                                     isInvalid={formik_validatelogon.touched.u && formik_validatelogon.errors.u}
                                     color={formik_validatelogon.touched.u && formik_validatelogon.errors.u ? "danger" : "success"}
                                     errorMessage={formik_validatelogon.touched.u && formik_validatelogon.errors.u}
-
                                 />
                             </div>
-
                         </Skeleton>
 
                         <Skeleton className="w-5/5 rounded-lg" isLoaded={isLoaded}>
@@ -45,7 +41,7 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                                 <Input
                                     id="p"
                                     name="p"
-                                    
+
                                     label="Contraseña"
                                     labelPlacement="outside"
                                     type="text"
@@ -58,10 +54,6 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                                 />
                             </div>
                         </Skeleton>
-
-
-
-
                     </div>
 
                 </Card>
@@ -69,8 +61,8 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                 {isLoaded ?
                     (
 
-                        <Button color="success" size="sm" variant="flat" type="submit">
-                            Iniciar Sesión
+                        <Button color="success" size="sm" variant="flat" type="submit" isLoading={loaddatax} >
+                            {loaddatax ? 'Cargando Sesión' : 'Iniciar Sesión'}
                         </Button>
                     ) : (
                         <Button color="danger" size="sm" variant="flat" onPress={toggleLoad} type="button">
