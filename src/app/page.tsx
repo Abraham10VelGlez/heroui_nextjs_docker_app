@@ -2,6 +2,7 @@ import Image from "next/image";
 import Backgroudpage from "@/components/Backgroundpage";
 import Skeletonx from "@/components/Skeletonx";
 
+
 export default function Home() {
   return (
     <>
@@ -31,7 +32,7 @@ export default function Home() {
 
           <div className="flex gap-4 items-center flex-col sm:flex-row">
 
-            <Skeletonx></Skeletonx>
+            <Skeletonx></Skeletonx>            
 
           </div>
 
