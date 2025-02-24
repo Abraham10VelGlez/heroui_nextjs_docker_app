@@ -1,0 +1,15 @@
+version: '1.0'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app # Monta el código fuente en el contenedor
+      - /app/node_modules # Evita conflictos con node_modules
+    environment:
+      #- DATABASE_HOST=databaseavg #HABILITAMOS EL NOMBRE DEL CONTENDOR EXTERNO DE LA BASE DE DATOS A CONECTAR
+      - CHOKIDAR_USEPOLLING=true # Necesario para entornos de Docker en Windows/Mac
+    command: yarn dev
