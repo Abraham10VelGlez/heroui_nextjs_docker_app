@@ -52,7 +52,8 @@ export function Auth({ isLoaded }) {
             const apiUrl = process.env.NEXT_PUBLIC_API_BACKEND_URL
             try {
                 const response = await axios.post(
-                    `${apiUrl}Loginnext`,
+                    //`${apiUrl}Loginnext`,
+                    `${apiUrl}Tokenuser`,
                     { values },
                     {
                         headers: {
@@ -79,17 +80,26 @@ export function Auth({ isLoaded }) {
                             });
 
                         } else {
-                            resolve(true);
-                            setData(false);
-                            console.log("Guardar el usuario en el contexto");
-                            addToast({
-                                title: "Guardar el usuario en el contexto, iniciar sesion",
-                                color: "success",
-                            });
-                            useRouter().push("/")
+                            //console.log(response.data.ok);                            
+                            if (response.data.ok) {
+                                resolve(true);
+                                setData(false);
+                                addToast({
+                                    title: "Guardar el usuario en el contexto, iniciar sesion",
+                                    color: "success",
+                                });
+                                //Cookies.set("authToken", response.data.token, { expires: 7 }); // Guardar token en cookies por 7 días
+                            } else {
+                                resolve(true);
+                                setData(false);
+                                addToast({
+                                    title: "El usuario no existe",
+                                    color: "danger",
+                                });
+                            }
                             // Guardar el usuario en el contexto
                             //setUser(response.data.user);
-                            //Cookies.set("authToken", response.data.token, { expires: 7 }); // Guardar token en cookies por 7 días
+                            //
                         }
                     }, 3000)
                 );

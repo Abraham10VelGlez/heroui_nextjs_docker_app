@@ -22,12 +22,12 @@ export default async function handler(req, res) {
             };
 
             // Crear el token usando los datos del usuario logueado y la llave secreta
-            const token = jwt.sign(tokenData, process.env.NEXT_JWT_SECRET_KEY, { expiresIn: '1h' });        
+            const token = jwt.sign(tokenData, process.env.NEXT_JWT_SECRET_KEY, { expiresIn: '1h' });
 
             // Respuesta exitosa
             res.status(200).json({
                 ok: true,
-                message: 'Usuario correcto, continuar',
+                user: username,                
                 data: token,
             });
         } catch (error) {
