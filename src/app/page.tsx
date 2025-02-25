@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Backgroudpage from "@/components/Backgroundpage";
 import Skeletonx from "@/components/Skeletonx";
-import Spinneravg from "@/components/Spinneravg";
+
 
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
           </div>
 
           <div className="flex gap-4 items-center flex-col sm:flex-row">            
-
+            
             <Skeletonx></Skeletonx>            
 
           </div>

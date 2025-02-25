@@ -3,7 +3,8 @@ import * as yup from "yup";
 import axios from "axios";
 import { useFormik } from "formik";
 import { addToast } from "@heroui/react";
-//import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 //import { UsersContext } from "@/context/UsersContext"; // Ajusta la ruta según tu proyecto
 // Definir los tipos de los valores del formulario
 interface LoginValues {
@@ -32,7 +33,7 @@ const validationSchema = yup.object({
 });
 
 export function Auth({ isLoaded }) {
-
+    const route = useRouter()
     //const { user, setUser, clearUser } = useContext(UsersContext);
     // Estado para manejar la carga
     const [loaddatax, setData] = useState<boolean>(false);
@@ -85,6 +86,7 @@ export function Auth({ isLoaded }) {
                                 title: "Guardar el usuario en el contexto, iniciar sesion",
                                 color: "success",
                             });
+                            useRouter().push("/")
                             // Guardar el usuario en el contexto
                             //setUser(response.data.user);
                             //Cookies.set("authToken", response.data.token, { expires: 7 }); // Guardar token en cookies por 7 días
