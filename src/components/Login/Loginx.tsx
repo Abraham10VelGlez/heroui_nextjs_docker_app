@@ -30,7 +30,7 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                                     value={formik_validatelogon.values.u}
                                     onChange={formik_validatelogon.handleChange}
                                     isInvalid={formik_validatelogon.touched.u && formik_validatelogon.errors.u}
-                                    color={formik_validatelogon.touched.u && formik_validatelogon.errors.u ? "danger" : "success"}
+                                    color={formik_validatelogon.touched.u && formik_validatelogon.errors.u ? "danger" : "default"}
                                     errorMessage={formik_validatelogon.touched.u && formik_validatelogon.errors.u}
                                 />
                             </div>
@@ -48,7 +48,7 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                                     value={formik_validatelogon.values.p}
                                     onChange={formik_validatelogon.handleChange}
                                     isInvalid={formik_validatelogon.touched.p && formik_validatelogon.errors.p}
-                                    color={formik_validatelogon.touched.p && formik_validatelogon.errors.p ? "danger" : "success"}
+                                    color={formik_validatelogon.touched.p && formik_validatelogon.errors.p ? "danger" : "default"}
                                     errorMessage={formik_validatelogon.touched.p && formik_validatelogon.errors.p}
 
                                 />

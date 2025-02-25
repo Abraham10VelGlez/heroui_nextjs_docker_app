@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4000:4000"
+      - "3000:3000"
     volumes:
       - .:/app # Monta el código fuente en el contenedor
       - /app/node_modules # Evita conflictos con node_modules

@@ -17,7 +17,7 @@ RUN yarn install
 COPY . .
 
 # Exponer el puerto en el que se ejecutará tu aplicación
-EXPOSE 4000
+EXPOSE 3000
 
 # Habilitar el polling para detectar cambios en el sistema de archivos
 ENV CHOKIDAR_USEPOLLING=true
