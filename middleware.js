@@ -11,6 +11,10 @@ export function middleware(req) {
         return NextResponse.redirect(new URL("/", req.url)); // Redirigir si no hay sesión
     }
 
+    if (!token) {
+        return NextResponse.redirect(new URL("/", req.url));
+    }
+
     return NextResponse.next();
 }
 

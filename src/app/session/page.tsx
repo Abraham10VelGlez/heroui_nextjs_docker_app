@@ -1,4 +1,5 @@
 import Backgroudpage from "@/components/Backgroundpage";
+import Keyx from "@/components/Login/Keyx";
 
 export default function Page2() {
   return (
@@ -11,6 +12,7 @@ export default function Page2() {
           <div className="flex gap-4 items-center flex-col sm:flex-row">
 
             INICIO DEL SITIO NEXT
+            <Keyx></Keyx>
 
           </div>
 
