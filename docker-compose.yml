@@ -1,4 +1,4 @@
-version: '1.0'
+version: 'beta.9.0'
 services:
   app:
     build:
@@ -13,3 +13,5 @@ services:
       #- DATABASE_HOST=databaseavg #HABILITAMOS EL NOMBRE DEL CONTENDOR EXTERNO DE LA BASE DE DATOS A CONECTAR
       - CHOKIDAR_USEPOLLING=true # Necesario para entornos de Docker en Windows/Mac
     command: yarn dev
+
+    #docker-compose up --build

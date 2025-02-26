@@ -25,4 +25,4 @@ ENV CHOKIDAR_USEPOLLING=true
 # Comando por defecto para ejecutar la aplicación en puerto por defecto
 #CMD ["yarn", "dev"]
 # Comando por defecto para ejecutar la aplicación en puerto sugerido por el usuario
-CMD ["yarn", "dev", "-p", "4000"]
+CMD ["yarn", "dev", "-p", "3000"]
