@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
-    const token = req.cookies.get("token"); // Obtener token de sesión
+    const token = req.cookies.get("jwt_avg"); // Obtener token de sesión
+    //console.log("Token detectado en middleware:", token);
 
     // Rutas protegidas
     const protectedRoutes = ["/session", "/admin"];

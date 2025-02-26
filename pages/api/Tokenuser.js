@@ -44,7 +44,20 @@ export default async function handler(req, res) {
                     const match = await bcrypt.compare(p, resultuser[0].passwordxx);
                     //console.log(match);
                     if (match) {//si es true todo en orden y continuar
-                        res.status(200).json({ ok: true, resultuser });
+                        //convertir un char a number
+                        const userRole = Number(resultuser[0].rolx);
+                        //validacion de json web token  INICIO
+                        const token_user = {
+                            id: resultuser[0].key2,
+                            rol: userRole,
+                            users: u,
+                            pass: p,
+                            namesys: 'NextAbram10$23AVGjs',
+                        }
+                        const token_ = jwt.sign(token_user, process.env.NEXT_JWT_SECRET_KEY, { expiresIn: '25m' });
+                        //enviar rol para definir  url correcta, funcionara si esto es un sito conmultiusuarios
+                        //const urlclient = fn_flag_roles_user_(userRole)                        
+                        res.status(200).json({ ok: true, avg: token_, urlsess: "/session", resultuser });
                     } else {// si es falso terminar, usuario no reconocido
                         res.status(200).json({ ok: false });
                     }
@@ -54,40 +67,6 @@ export default async function handler(req, res) {
             } else {
 
             }
-
-            /*
-              const match = await bcrypt.compare(passwordd, result[0].passwordxx);
-
-    if (match) {
-        //convertir un char a number
-        const userRole = Number(result[0].rolx);
-
-        //validacion de json web token  INICIO
-        const tokenuser = {
-            id: result[0].key2,
-            rol: userRole,
-            users: userrname,
-            pass: passwordd,
-            namesys: 'Dic20$5AVGt4val',
-        }
-        //arrancamos la libreria de jwt para validar y crear nuesttro token
-        // usando el json de los datos del (usuario logeado , llave secreta de nuevo archivo env
-        const token_ = jwt.sign(tokenuser, process.env.JWT_SECRET_KEY, { expiresIn: '25m' })
-        //validacion de json web token  FIN
-
-
-        res.cookie("jwt_avg", token_);
-        //enviar rol para definir  url correcta
-        const urlclient = fn_flag_roles_user_(userRole)
-        //console.log(urlclient);
-
-        //res.cookie("jsonavg", tokecredenciales);
-        res.status(200).json({ ok: true, message: 'Usuario correcto, continuar', key: 1, url_client: (await urlclient).message, data: token_, data_username: result[0].name, data_di: result[0].key2, emailxx: result[0].emailxx });
-
-    } else {
-        res.status(200).json({ ok: false, key: 0, message: 'Credenciales invalidas' });
-    }
-             */
 
         }
 

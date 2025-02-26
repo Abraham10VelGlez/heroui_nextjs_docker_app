@@ -48,7 +48,6 @@ export function Auth({ isLoaded }) {
         onSubmit: async (values) => {
             //console.log('Enviando formulario:', values);
             setData(true);
-
             const apiUrl = process.env.NEXT_PUBLIC_API_BACKEND_URL
             try {
                 const response = await axios.post(
@@ -62,14 +61,11 @@ export function Auth({ isLoaded }) {
                         withCredentials: true,
                     }
                 );
-
                 // Simular un delay de 3 segundos antes de procesar la respuesta
                 await new Promise((resolve) =>
                     setTimeout(() => {
-
                         ////console.log(response.data)
                         //console.log(response.data.length);
-
                         if (response.data.length == 0) {
                             console.log("ESTE USUARIO NO EXISTE EN SISTEMA");
                             resolve(true);
@@ -82,13 +78,16 @@ export function Auth({ isLoaded }) {
                         } else {
                             //console.log(response.data.ok);                            
                             if (response.data.ok) {
+                                //console.log(response.data.resultuser[0].name);                                
                                 resolve(true);
                                 setData(false);
                                 addToast({
                                     title: "Guardar el usuario en el contexto, iniciar sesion",
                                     color: "success",
                                 });
-                                //Cookies.set("authToken", response.data.token, { expires: 7 }); // Guardar token en cookies por 7 días
+                                save_session(response.data)
+                                //route.push(response.data.urlsess);
+                                //Cookies.set("authToken", response.data.resultuser[0].avg, { expires: 1 }); // Guardar token en cookies por 7 días
                             } else {
                                 resolve(true);
                                 setData(false);
@@ -110,9 +109,16 @@ export function Auth({ isLoaded }) {
 
         },
     });
-
-
-
+    const save_session = (json) => {                
+        Cookies.set('jwt_avg', json.avg, { expires: 1 }); // expira en 1 día
+        Cookies.set('NazyXuserId', json.resultuser[0].key2, { expires: 1 });
+        Cookies.set('NazyXuserName', json.resultuser[0].name, { expires: 1 });
+        Cookies.set('NazyXuserRol', json.resultuser[0].rolx, { expires: 1 });
+        sessionStorage.setItem('NazyXuserId', json.resultuser[0].key2);// almacenar en sesion 
+        sessionStorage.setItem('NazyXuserName', json.resultuser[0].name);
+        sessionStorage.setItem('NazyXuserRol', json.resultuser[0].rolx);
+        route.push(json.urlsess);
+    };
     return {
         formik_validatelogon,
         loaddatax,
