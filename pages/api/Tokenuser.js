@@ -1,7 +1,26 @@
 import jwt from 'jsonwebtoken';
 import pool from "../../lib/Db";
 import bcrypt from "bcryptjs";
+import Cors from 'cors';
 
+// Inicializa CORS
+const cors = Cors({
+    methods: ['POST', 'OPTIONS'], // Métodos que deseas permitir
+    origin: 'http://localhost:3000', // Cambia esto por el dominio de tu aplicación
+    credentials: true, // Permitir cookies si es necesario
+});
+
+// Función para ejecutar el middleware de CORS
+function runMiddleware(req, res, fn) {
+    return new Promise((resolve, reject) => {
+        fn(req, res, (result) => {
+            if (result instanceof Error) {
+                return reject(result);
+            }
+            return resolve(result);
+        });
+    });
+}
 const fn_flag_validacion_users = async (x, y) => {
     let error_captor = [];
     try {
@@ -21,6 +40,8 @@ const fn_flag_validacion_users = async (x, y) => {
 }
 
 export default async function handler(req, res) {
+     // Ejecuta el middleware de CORS
+     await runMiddleware(req, res, cors);
     if (req.method === 'POST') {
         let { u, p } = req.body.values;
         let errores_server = [];

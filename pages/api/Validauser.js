@@ -85,6 +85,7 @@ export default async function handler(req, res) {
         }
 
     } else {
-        res.status(405).json({ error: 'Método no permitido' });
+        //res.status(405).json({ error: 'Método no permitido' });
+        res.status(405).json({ ok: false });
     }
 } 
