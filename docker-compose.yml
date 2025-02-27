@@ -11,7 +11,8 @@ services:
       - /app/node_modules # Evita conflictos con node_modules
     environment:
       #- DATABASE_HOST=databaseavg #HABILITAMOS EL NOMBRE DEL CONTENDOR EXTERNO DE LA BASE DE DATOS A CONECTAR
-      - CHOKIDAR_USEPOLLING=true # Necesario para entornos de Docker en Windows/Mac
+      #- CHOKIDAR_USEPOLLING=true # Necesario para entornos de Docker en Windows/Mac
+      - NODE_ENV=development
     command: yarn dev
 
     #docker-compose up --build

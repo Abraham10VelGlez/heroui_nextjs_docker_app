@@ -100,11 +100,8 @@ export function Auth() {
                                 addToast({
                                     title: "Guardar el usuario en el contexto, iniciar sesion",
                                     color: "success",
-                                });
-                                console.log(response.data);
-                                save_session(response.data)
-                                //route.push(response.data.urlsess);
-                                //Cookies.set("authToken", response.data.resultuser[0].avg, { expires: 1 }); // Guardar token en cookies por 7 días
+                                });                                
+                                save_session(response.data)                                
                             } else {
                                 resolve(true);
                                 setData(false);
@@ -112,10 +109,7 @@ export function Auth() {
                                     title: "El usuario no existe",
                                     color: "danger",
                                 });
-                            }
-                            // Guardar el usuario en el contexto
-                            //setUser(response.data.user);
-                            //
+                            }                           
                         }
                     }, 3000)
                 );
@@ -134,7 +128,7 @@ export function Auth() {
         sessionStorage.setItem('NazyXuserId', json.resultuser[0].key2);// almacenar en sesion 
         sessionStorage.setItem('NazyXuserName', json.resultuser[0].name);
         sessionStorage.setItem('NazyXuserRol', json.resultuser[0].rolx);
-        route.push(json.urlsess);
+        route.replace(json.urlsess);
     };
     return {
         formik_validatelogon,
