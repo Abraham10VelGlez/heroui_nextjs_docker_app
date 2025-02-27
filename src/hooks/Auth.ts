@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { useFormik } from "formik";
@@ -11,6 +11,22 @@ interface LoginValues {
     u: string;
     p: string;
 }
+
+interface User {
+    key: number;
+    passwordxx: string;
+    key2: string;
+    name: string;
+    rolx: string;
+}
+
+interface JsonResponse {
+    ok: boolean;
+    avg: string;
+    urlsess: string;
+    resultuser: User[];
+}
+
 
 // Definir el esquema de validación con Yup
 const validationSchema = yup.object({
@@ -32,11 +48,11 @@ const validationSchema = yup.object({
         .required("El campo de contraseña es obligatorio"),
 });
 
-export function Auth({ isLoaded }) {
+export function Auth() {
     const route = useRouter()
     //const { user, setUser, clearUser } = useContext(UsersContext);
     // Estado para manejar la carga
-    const [loaddatax, setData] = useState<boolean>(false);
+    const [loaddatax, setData] = useState(false);
 
     // Formik para manejar el formulario
     const formik_validatelogon = useFormik<LoginValues>({
@@ -85,6 +101,7 @@ export function Auth({ isLoaded }) {
                                     title: "Guardar el usuario en el contexto, iniciar sesion",
                                     color: "success",
                                 });
+                                console.log(response.data);
                                 save_session(response.data)
                                 //route.push(response.data.urlsess);
                                 //Cookies.set("authToken", response.data.resultuser[0].avg, { expires: 1 }); // Guardar token en cookies por 7 días
@@ -109,7 +126,7 @@ export function Auth({ isLoaded }) {
 
         },
     });
-    const save_session = (json) => {                
+    const save_session = (json: JsonResponse) => {
         Cookies.set('jwt_avg', json.avg, { expires: 1 }); // expira en 1 día
         Cookies.set('NazyXuserId', json.resultuser[0].key2, { expires: 1 });
         Cookies.set('NazyXuserName', json.resultuser[0].name, { expires: 1 });

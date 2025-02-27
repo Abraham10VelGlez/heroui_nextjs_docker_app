@@ -1,10 +1,13 @@
 "use client"
 import React from "react";
-import { Card, Skeleton, Button, Input, Avatar, Spinner } from "@heroui/react";
+import { Card, Skeleton, Button, Input, Avatar } from "@heroui/react";
 import { Auth } from "@/hooks/Auth";
-
-export default function Loginx({ isLoaded, toggleLoad }) {
-    const { formik_validatelogon, loaddatax } = Auth({ isLoaded })
+interface LoginxProps {
+    isLoaded: boolean;
+    toggleLoad: () => void;
+}
+export default function Loginx({ isLoaded, toggleLoad }: LoginxProps) {
+    const { formik_validatelogon, loaddatax } = Auth()
     return (
         <>
             <form className="flex flex-col gap-4" onSubmit={formik_validatelogon.handleSubmit}>
@@ -29,7 +32,7 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                                     type="text"
                                     value={formik_validatelogon.values.u}
                                     onChange={formik_validatelogon.handleChange}
-                                    isInvalid={formik_validatelogon.touched.u && formik_validatelogon.errors.u}
+                                    isInvalid={!!(formik_validatelogon.touched.u && formik_validatelogon.errors.u)}
                                     color={formik_validatelogon.touched.u && formik_validatelogon.errors.u ? "danger" : "default"}
                                     errorMessage={formik_validatelogon.touched.u && formik_validatelogon.errors.u}
                                 />
@@ -47,7 +50,7 @@ export default function Loginx({ isLoaded, toggleLoad }) {
                                     type="text"
                                     value={formik_validatelogon.values.p}
                                     onChange={formik_validatelogon.handleChange}
-                                    isInvalid={formik_validatelogon.touched.p && formik_validatelogon.errors.p}
+                                    isInvalid={!!(formik_validatelogon.touched.p && formik_validatelogon.errors.p)}
                                     color={formik_validatelogon.touched.p && formik_validatelogon.errors.p ? "danger" : "default"}
                                     errorMessage={formik_validatelogon.touched.p && formik_validatelogon.errors.p}
 

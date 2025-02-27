@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
-import cookie from 'cookie';
 import pool from "../../lib/Db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const fn_flag_validacion_users = async (x, y) => {
     let error_captor = [];

@@ -1,6 +1,5 @@
-import { ok } from "assert";
 import pool from "../../lib/Db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 /// CREACION DE NUEVO USUARIO.
 
@@ -23,13 +22,13 @@ const fn_flag_new_user_especial = async (namex, hashedPassword) => {
                     return errores_lado_server2;
                 }
             } catch (error) {
-                errores_lado_server2.push({ key: 0 });
-                return errores_lado_server2;
+                console.error("Error al insertar usuario:", error);
+                return res.status(500).json({ key: 0 });
             }
         }
     } catch (error) {
-        errores_lado_server2.push({ key: 0 });
-        return errores_lado_server2;
+        console.error("Error al insertar usuario:", error);
+        return res.status(500).json({ key: 0 });
     }
 }
 

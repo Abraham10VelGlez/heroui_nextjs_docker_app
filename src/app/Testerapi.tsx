@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 
 export default function Testerapi() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState(null);
 
 
   useEffect(() => {
 
     const url = process.env.NEXT_PUBLIC_API_URL || "";
-    
+
     if (!url) {
       console.error("NEXT_PUBLIC_API_URL no está definida");
       return;
