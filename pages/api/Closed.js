@@ -1,4 +1,6 @@
-export default function handler(req, res) {
+import { authMiddlewareNEXTBACK2 } from "./middleware2";
+
+async function handler(req, res) {
     if (req.method === "POST") {
         // Eliminar la cookie de sesión estableciendo su expiración en el pasado
         res.setHeader("Set-Cookie", "jwt_avg=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=Strict");
@@ -10,3 +12,5 @@ export default function handler(req, res) {
         return res.status(405).json({ error: "Método no permitido" });
     }
 }
+
+export default authMiddlewareNEXTBACK2(handler)

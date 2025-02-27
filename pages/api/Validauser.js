@@ -1,5 +1,6 @@
 import pool from "../../lib/Db";
 import bcrypt from "bcryptjs";
+import { authMiddlewareNEXTBACK2 } from "./middleware2";
 
 /// CREACION DE NUEVO USUARIO.
 
@@ -33,7 +34,7 @@ const fn_flag_new_user_especial = async (namex, hashedPassword) => {
 }
 
 
-export default async function handler(req, res) {
+async function handler(req, res) {
     if (req.method === 'POST') {
         //console.log(req.body.values);    
         let { u, p } = req.body.values;
@@ -89,3 +90,5 @@ export default async function handler(req, res) {
         res.status(405).json({ ok: false });
     }
 } 
+
+export default authMiddlewareNEXTBACK2(handler)

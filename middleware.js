@@ -5,7 +5,7 @@ export function middleware(req) {
     //console.log("Token detectado en middleware:", token);
 
     // Rutas protegidas
-    const protectedRoutes = ["/session", "/free"];
+    const protectedRoutes = ["/session", "/admin"];
 
     if (protectedRoutes.includes(req.nextUrl.pathname) && !token) {
         return NextResponse.redirect(new URL("/", req.url)); // Redirigir si no hay sesión
@@ -20,5 +20,5 @@ export function middleware(req) {
 
 // Definir en qué rutas se ejecuta el middleware
 export const config = {
-    matcher: ["/session/:path*", "/free/:path*"], // Rutas protegidas
+    matcher: ["/session/:path*", "/admin/:path*"], // Rutas protegidas
 };
