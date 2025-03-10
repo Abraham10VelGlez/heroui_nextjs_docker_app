@@ -16,17 +16,7 @@ export default nextConfig;
 */
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  ...(process.env.NODE_ENV === "development" && {
-    webpackDevMiddleware: (config) => {
-      config.watchOptions = {
-        poll: 1000, // Ajusta el tiempo de escucha de cambios
-        aggregateTimeout: 300,
-      };
-      return config;
-    },
-  }),
+const nextConfig: NextConfig = {  
 };
 
 export default nextConfig;
