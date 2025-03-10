@@ -25,7 +25,7 @@ export function authMiddlewareNEXTBACK2(handler) {
 
       // Llamar al handler original y pasarle los mismos parámetros
       return handler(req, res);
-    } catch (_error) {
+    } catch {
       return res.status(403).json({ message: 'Token inválido o expirado' });
     }
   };
