@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",    
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start -p $PORT",
-    "lint": "next lint",
-    "build": "NODE_OPTIONS='--max-old-space-size=4096' next build"
+    "lint": "next lint"
   },
   "dependencies": {
     "@heroui/react": "^2.7.2",
