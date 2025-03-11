@@ -1,43 +1,24 @@
-footer {
+footer{
   color: rgb(255, 255, 255);
-  text-align: center;
-  padding: 10px;
-  font-size: 1rem;
 }
+
 
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 body {
   background: radial-gradient(ellipse at center, #fffeea 0%, #fffeea 35%, #0297c0 100%);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
 }
 
 .ocean {
+  height: 5%;
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
   background: #015871;
-}
-
-/* Ajuste de la altura del océano en diferentes tamaños de pantalla */
-@media (min-width: 768px) {
-  .ocean {
-    height: 10%;
-  }
-}
-
-@media (max-width: 767px) {
-  .ocean {
-    height: 7%;
-  }
 }
 
 .wave {
@@ -46,31 +27,20 @@ body {
   top: -198px;
   width: 6400px;
   height: 198px;
-  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-  transform: translate3d(0, 0, 0);
+  -webkit-animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+          animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 }
 
-/* Segunda ola con opacidad */
 .wave:nth-of-type(2) {
   top: -175px;
-  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
-  opacity: 0.7;
+  -webkit-animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+          animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 1;
 }
 
-/* Ajuste de altura de las olas en móviles */
-@media (max-width: 767px) {
-  .wave {
-    top: -100px;
-    height: 150px;
-  }
-
-  .wave:nth-of-type(2) {
-    top: -90px;
-  }
-}
-
-/* Animación de la ola */
-@keyframes wave {
+@-webkit-keyframes wave {
   0% {
     margin-left: 0;
   }
@@ -79,11 +49,31 @@ body {
   }
 }
 
-@keyframes swell {
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+@-webkit-keyframes swell {
   0%, 100% {
-    transform: translate3d(0, -25px, 0);
+    -webkit-transform: translate3d(0, -25px, 0);
+            transform: translate3d(0, -25px, 0);
   }
   50% {
-    transform: translate3d(0, 5px, 0);
+    -webkit-transform: translate3d(0, 5px, 0);
+            transform: translate3d(0, 5px, 0);
+  }
+}
+@keyframes swell {
+  0%, 100% {
+    -webkit-transform: translate3d(0, -25px, 0);
+            transform: translate3d(0, -25px, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, 5px, 0);
+            transform: translate3d(0, 5px, 0);
   }
 }
